@@ -35,7 +35,7 @@ export class Login {
         next: (result:any) => {
           console.log(result);
           localStorage.setItem('token', result.token);
-          this.view.view.set('infobox');
+          this.view.view.set('players');
         },
         error: error => {
           console.log(error);

@@ -1,1 +1,35 @@
-<p>players works!</p>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE-edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Players | Admin</title>
+  <link rel="stylesheet" href="players.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<div class="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+    @for (player of players(); track player) {
+      <tr>
+        <td>{{player.username}}</td>
+        <td>{{player.email}}</td>
+      </tr>
+    }
+    </tbody>
+  </table>
+</div>
+@if (show()) {
+  <div class="error-message">
+  {{ error() }}
+  </div>
+}
