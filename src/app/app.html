@@ -1,5 +1,11 @@
-<app-header></app-header>
-<app-infobox></app-infobox>
 <main>
-  <router-outlet></router-outlet>
+  @switch (view.view()) {
+    @case ('infobox') {
+      <app-header></app-header>
+      <app-infobox></app-infobox>
+    }
+    @case ('test') {
+      <app-login></app-login>
+    }
+  }
 </main>
