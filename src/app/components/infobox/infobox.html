@@ -1,0 +1,12 @@
+<div>
+  <h1> INFO! </h1>
+  @if(show) {
+    <p> Hier stat wat informatie over Henk:</p>
+  }
+  <ul>
+    @for(fact of facts(); track fact) {
+      <li> {{fact }}</li>
+    }
+  </ul>
+  <p> Message: {{ message() }}</p>
+</div>
