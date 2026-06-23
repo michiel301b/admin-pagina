@@ -5,7 +5,7 @@ import {effect, Injectable, signal, WritableSignal} from '@angular/core';
 })
 
 export class View {
-  view:WritableSignal<string> = signal<string>('test');
+  view:WritableSignal<string> = signal<string>('login');
   constructor() {
     const savedView = localStorage.getItem('savedView');
     if (savedView) {

@@ -1,11 +1,34 @@
 <main>
   @switch (view.view()) {
+
     @case ('infobox') {
       <app-header></app-header>
       <app-infobox></app-infobox>
     }
-    @case ('test') {
+
+    @case ('players') {
+      <app-header></app-header>
+      <app-players></app-players>
+    }
+
+    @case ('aggregate') {
+      <app-header></app-header>
+      <app-aggregate></app-aggregate>
+    }
+
+    @case ('dates') {
+      <app-header></app-header>
+      <app-dates></app-dates>
+    }
+
+    @case ('allgames') {
+      <app-header></app-header>
+      <app-allgames></app-allgames>
+    }
+
+    @case ('login') {
       <app-login></app-login>
     }
+
   }
 </main>

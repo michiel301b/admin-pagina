@@ -1,6 +1,133 @@
-div {
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  min-height: 100vh;
+}
+
+.navbar {
   display: flex;
-  background-color: rebeccapurple;
-  color: white;
-  padding-left: 20px;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  background: cadetblue;
+  box-shadow: 0 10px 10px rgba(0,0,0,0.3);
+  backdrop-filter: blur(10px);
+  z-index: 999;
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1600px;
+}
+
+.navbar-container .navbar-menu {
+  display: flex;
+  text-align: center;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.navbar-container .navbar-menu li button {
+  background: transparent;
+  border: 2px solid transparent;
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 500;
+  padding: 6px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.navbar-container .navbar-menu li button.active {
+  border: 2px solid white;
+}
+
+.navbar-container .navbar-menu li button:hover {
+  color: #162730;
+  background: rgba(188, 212, 229, 0.8);
+  border: 2px solid #fff;
+}
+
+.navbar-toggle {
+  display: none;
+  background: transparent;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  background: #fff;
+  transition: all 0.3s ease-in-out;
+}
+
+@media (max-width: 880px) {
+
+  .navbar {
+    backdrop-filter: none;
+  }
+
+  .navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1600px;
+  }
+
+  .navbar-container .navbar-menu li button.active {
+    color: crimson;
+  }
+
+  .navbar-container .navbar-menu {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.7rem;
+    position: absolute;
+    height: 100vh;
+    width: 300px;
+    top: 0;
+    right: 0;
+    padding: 5rem 1.5rem;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+  }
+
+  .navbar-toggle {
+    display: block;
+    z-index: 999;
+  }
+
+  .navbar-container .navbar-menu.active {
+    display: flex;
+  }
+
+  @media (max-width: 480px) {
+    .navbar-container {
+      padding: 0 1rem;
+    }
+
+    .navbar-container .navbar-menu li button {
+      background-color: cadetblue;
+      font-size: 1.2rem;
+      padding: 3px 15px;
+    }
+  }
 }

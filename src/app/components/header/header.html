@@ -1,6 +1,30 @@
-<div>
-  <h1> HENK!!!!</h1>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE-edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Admin</title>
+  <link rel="stylesheet" href="header.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<div class="wrapper">
+  <nav class="navbar">
+    <div class="navbar-container">
+      <button class="navbar-toggle" (click)="toggleMenu()">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+      <ul class="navbar-menu" [class.active]="isMenuOpen">
+        <li><button (click)="view.view.set('players')" [class.active]="view.view() === 'players'">Player Overview</button></li>
+        <li><button (click)="view.view.set('aggregate')" [class.active]="view.view() === 'aggregate'">Aggregate Overview</button></li>
+        <li><button (click)="view.view.set('dates')" [class.active]="view.view() === 'dates'">Game Per Date Overview</button></li>
+        <li><button (click)="view.view.set('allgames')" [class.active]="view.view() === 'allgames'">All Games Overview</button></li>
+        <li><button (click)="logout()">Logout</button></li>
+      </ul>
+    </div>
+  </nav>
 </div>
-<button (click)="logout()">
-  Logout
-</button>
