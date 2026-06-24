@@ -1,9 +1,8 @@
-import {Component, signal} from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {Component, inject, signal} from '@angular/core';
 import { View } from '../../view';
 import { FormsModule } from '@angular/forms';
 import { WritableSignal } from '@angular/core';
-
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -18,27 +17,17 @@ export class Login {
   email:string = "";
   errorMessage:WritableSignal<string> = signal<string>('');
 
-  constructor(
-    public view: View,
-    private httpClient: HttpClient
-  ) {}
+  public view = inject(View);
+  public authService = inject(AuthService);
 
   async login() {
     this.errorMessage.set("");
-    console.log('Username:', this.username, 'Email', this.email, 'Password:', this.password);
-    this.httpClient.post('http://localhost:8000/memory/login', {
-      username: this.username,
-      email: this.email,
-      password: this.password,
-    }).subscribe(
-      {
-        next: (result:any) => {
-          console.log(result);
+    this.authService.login(this.username, this.email, this.password).subscribe(
+      {next: (result:any) => {
           localStorage.setItem('token', result.token);
           this.view.view.set('players');
         },
         error: error => {
-          console.log(error);
           this.errorMessage.set("Invalid username or password");
         }
       }

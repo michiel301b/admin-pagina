@@ -2,8 +2,8 @@
   <table>
     <thead>
     <tr>
-      <th>Total Games</th>
-      <th>Total Players</th>
+      <th>Total Games Played</th>
+      <th>Total Players Registered</th>
     </tr>
     </thead>
     <tbody>
@@ -14,23 +14,8 @@
     </tbody>
   </table>
 </div>
-<div class="table-wrapper">
-  <table>
-    <thead>
-    <tr>
-      <th>API Name</th>
-      <th>Amount Used</th>
-    </tr>
-    </thead>
-    <tbody>
-    @for (api of apiStats(); track api.api) {
-      <tr>
-        <td>{{ api.api }}</td>
-        <td>{{ api.aantal }}</td>
-      </tr>
-    }
-    </tbody>
-  </table>
+<div id="chartWrapper">
+
 </div>
 @if (show()) {
   <div class="error-message">

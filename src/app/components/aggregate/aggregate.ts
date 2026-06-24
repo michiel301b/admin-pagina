@@ -1,5 +1,6 @@
-import {Component, OnInit, signal, WritableSignal} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {Component, inject, OnInit, signal, WritableSignal} from '@angular/core';
+import {HttpService} from '../../services/http.service';
+import {ChartService} from '../../services/chart.service';
 
 @Component({
   selector: 'app-aggregate',
@@ -8,36 +9,33 @@ import {HttpClient} from '@angular/common/http';
   styleUrl: './aggregate.css',
 })
 export class Aggregate implements OnInit {
-  readonly token = localStorage.getItem('token');
+
+  private httpService = inject(HttpService);
+  private chartService = inject(ChartService);
+
   error:WritableSignal<string> = signal("");
   show:WritableSignal<boolean> = signal(false);
-  aggregate:WritableSignal<any[]> = signal([]);
   totalGames:WritableSignal<number> = signal(0);
   totalPlayers:WritableSignal<number> = signal(0);
-  apiStats:WritableSignal<any[]> = signal([]);
 
-  constructor(private httpClient: HttpClient) { }
 
   ngOnInit() {
-    this.httpClient.get('http://localhost:8000/admin/aggregate', {
-      headers: {
-        Authorization: `Bearer ${this.token}`
-      }
-    }).subscribe({
+    this.httpService.getAgrregate().subscribe({
         next: (data: any) => {
-          this.aggregate.set(data);
+
           this.totalGames.set(data[0]?.aantal_spellen)
           this.totalPlayers.set(data[1]?.aantal_spelers);
-          this.apiStats.set(data[2]);
-          console.log(data);
+
+          const stats = data[2];
+          const apis = stats.map((stat: any) => stat.api);
+          const counts = stats.map((stat: any) => stat.aantal);
+
+          this.chartService.createColumnChartWithCategory('chartWrapper', 'API Usage', apis, counts);
         },
+
         error: (err) => {
-          console.log('error trigger');
           this.error.set(`Cannot load because:  ${err.error.message}`);
-          console.log('error message', err.error.message);
           this.show.set(true);
-          console.log('show status', this.show());
-          console.log(err);
         }
       }
     )

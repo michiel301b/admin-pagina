@@ -1,5 +1,5 @@
-import {Component, OnInit, signal, WritableSignal} from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {Component, inject, OnInit, signal, WritableSignal} from '@angular/core';
+import {HttpService} from '../../services/http.service';
 
 @Component({
   selector: 'app-players',
@@ -9,30 +9,20 @@ import { HttpClient } from '@angular/common/http';
 })
 export class Players implements OnInit {
 
-    readonly token = localStorage.getItem('token');
+    private httpService = inject(HttpService);
+
     error:WritableSignal<string> = signal("");
     show:WritableSignal<boolean> = signal(false);
     players:WritableSignal<any[]> = signal([]);
 
-    constructor(private httpClient: HttpClient) { }
-
     ngOnInit() {
-      this.httpClient.get('http://localhost:8000/admin/players', {
-        headers: {
-          Authorization: `Bearer ${this.token}`
-        }
-      }).subscribe({
+      this.httpService.getPlayers().subscribe({
         next: (data: any) => {
           this.players.set(data);
-          console.log(data);
       },
         error: (err) => {
-          console.log('error trigger');
           this.error.set(`Cannot load because:  ${err.error.message}`);
-          console.log('error message', err.error.message);
           this.show.set(true);
-          console.log('show status', this.show());
-          console.log(err);
           }
         }
       )

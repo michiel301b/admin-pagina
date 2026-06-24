@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import { View } from '../../view';
 
 @Component({
@@ -9,11 +9,8 @@ import { View } from '../../view';
 })
 export class Header {
 
+  public view = inject(View);
   isMenuOpen:boolean = false;
-
-  constructor(
-    public view: View
-  ) {}
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;

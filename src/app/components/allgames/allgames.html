@@ -1,1 +1,31 @@
-<p>allgames works!</p>
+<div id="closedColorChart"></div>
+<div id="openColorChart"></div>
+<div class="table-wrapper">
+  <table>
+    <thead>
+    <tr>
+      <th>Date</th>
+      <th>API</th>
+      <th>Score</th>
+      <th>Color Closed</th>
+      <th>Color Open</th>
+    </tr>
+    </thead>
+    <tbody>
+      @for (game of data(); track game) {
+        <tr>
+          <td>{{ game.day }}</td>
+          <td>{{ game.api }}</td>
+          <td>{{ game.score }}</td>
+          <td>{{ game.color_closed }}</td>
+          <td>{{ game.color_found }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+@if (show()) {
+  <div class="error-message">
+    {{ error() }}
+  </div>
+}

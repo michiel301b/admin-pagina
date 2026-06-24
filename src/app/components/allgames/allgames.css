@@ -1,0 +1,13 @@
+#closedColorChart, #openColorChart {
+  margin-top: 20px;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 1200px) {
+  #closedColorChart, #openColorChart {
+    max-width: 1200px;
+    margin: auto;
+  }
+}
