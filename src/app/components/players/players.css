@@ -113,4 +113,8 @@
   tbody tr:nth-child(even):hover {
     background-color: gray;
   }
+
+  tbody tr:nth-child(odd):hover {
+    background-color: gray;
+  }
 }

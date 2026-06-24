@@ -1,1 +1,39 @@
-<p>aggregate works!</p>
+<div class="table-wrapper">
+  <table>
+    <thead>
+    <tr>
+      <th>Total Games</th>
+      <th>Total Players</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>{{ totalGames() }}</td>
+          <td>{{ totalPlayers() }}</td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+<div class="table-wrapper">
+  <table>
+    <thead>
+    <tr>
+      <th>API Name</th>
+      <th>Amount Used</th>
+    </tr>
+    </thead>
+    <tbody>
+    @for (api of apiStats(); track api.api) {
+      <tr>
+        <td>{{ api.api }}</td>
+        <td>{{ api.aantal }}</td>
+      </tr>
+    }
+    </tbody>
+  </table>
+</div>
+@if (show()) {
+  <div class="error-message">
+    {{ error() }}
+  </div>
+}
